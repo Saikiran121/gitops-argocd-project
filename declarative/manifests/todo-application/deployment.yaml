@@ -1,0 +1,17 @@
+apiVerson: apps/v1 
+kind: Deployment
+metadata:
+  name: todo-application
+spec:
+  selector:
+    matchLabels:
+      app: todo-application
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: todo-application
+    spec:
+      containers:
+        - name: todo-application
+          image: saikiran8050/todo-application:v1

@@ -1,0 +1,17 @@
+apiVerson: apps/v1 
+kind: Deployment
+metadata:
+  name: personal-command-center
+spec:
+  selector:
+    matchLabels:
+      app: personal-command-center
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: personal-command-center
+    spec:
+      containers:
+        - name: personal-command-center
+          image: saikiran8050/personal-command-center:v1
