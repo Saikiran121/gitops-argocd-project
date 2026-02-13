@@ -1,9 +1,9 @@
-apiVersion: argoproj.io/1alpha1
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: geocentric-model-app 
   namespace: argocd 
-  finalizer:
+  finalizers:
     - resources-finalizer.argocd.argoproj.io 
 spec:
   project: default 
@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD 
     path: ./declarative/manifests/geocentric-model 
   
-  destinattion:
+  destination:
     server: https://kubernetes.default.svc 
     namespace: geocentric-model 
   
