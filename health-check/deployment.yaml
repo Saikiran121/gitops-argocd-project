@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-random-shapes
+  labels:
+    app: random-shapes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: random-shapes
+  template:
+    metadata:
+      labels:
+        app: random-shapes
+    spec:
+      containers:
+      - name: php-app
+        image: saikiran8050/php-random-shapes:v3
+        ports:
+        - containerPort: 80
+        env:
+        - name: CIRCLE_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: moving-shapes-colors
+              key: CIRCLE_COLOR
+        - name: OVAL_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: moving-shapes-colors
+              key: OVAL_COLOR
+        - name: SQUARE_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: moving-shapes-colors
+              key: SQUARE_COLOR
+        - name: TRIANGLE_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: moving-shapes-colors
+              key: TRIANGLE_COLOR
+        - name: RECTANGLE_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: moving-shapes-colors
+              key: RECTANGLE_COLOR
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+
